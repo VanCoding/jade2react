@@ -2,7 +2,8 @@
   "name": "jade2react",
   "version": "0.0.0",
   "description": "A jade to react compiler",
-  "main": "lib/index.js",
+  "main": "lib/server.js",
+  "browser":"lib/client.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
