@@ -13,6 +13,7 @@
   "author": "Patrik Stutz",
   "license": "GPL",
   "dependencies": {
-    "jade": "git://github.com/VanCoding/jade.git"
+    "jade": "git://github.com/VanCoding/jade.git",
+    "through": "~2.3.6"
   }
 }
