@@ -81,14 +81,14 @@ In here, you also can require other JavaScript modules or React components and
 even other jade files. See example above.
 
     ```
-.main
-    input(type="button" value="Click Me!" onClick=this.click)
-main.
-    var somemodule = require("somemodule");
+    .main
+        input(type="button" value="Click Me!" onClick=this.click)
+    main.
+        var somemodule = require("somemodule");
 
-    exports.click = function(){
-        somemodule.doSomething();
-    }
+        exports.click = function(){
+            somemodule.doSomething();
+        }
     ```
 - Extends still works! But not only the render function gets extended but the
 whole component. All properties that are defined in the `exports` object in the
@@ -96,40 +96,40 @@ derived component automatically get mixed into the current exports object. So,
 the following example will still work:
 
     ```
-//base.jade
-div
-    block content
-main.
-    exports.click = function(){
-        alert("Clicked!")
-    }
+    //base.jade
+    div
+        block content
+    main.
+        exports.click = function(){
+            alert("Clicked!")
+        }
 
     ```
     ```
-//component.jade
-extends base
-append content
-    div(onClick=this.click)
+    //component.jade
+    extends base
+    append content
+        div(onClick=this.click)
     ```
 
 - Since React allows you to pass children to a component, I also made this
 available. Just add an `children` element where you want your children to be
 rendered:
     ```
-//list.jade
-.list
-    h1 Children following
-    children
-```
+    //list.jade
+    .list
+        h1 Children following
+        children
+    ```
 You then can pass the children like you'd expect:
     ```
-//main.jade
-.main
-    List
-        p Child 1
-        p Child 2
-main.
-var List = require("list.jade");
+    //main.jade
+    .main
+        List
+            p Child 1
+            p Child 2
+    main.
+    var List = require("list.jade");
     ```
 
 - Tag contents are always escaped. So `h1 hello <b>world</b>` will render as
@@ -137,10 +137,10 @@ var List = require("list.jade");
 because in react you set either the full contents of a tag as insecure html,
 or nothing. So while the above example would be no problem, the following
 actually would be:
-```
-div <b>hello</b>
-  p world!
-```
+    ```
+    div <b>hello</b>
+        p world!
+    ```
 
 Licence
 -------
