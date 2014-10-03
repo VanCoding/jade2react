@@ -113,7 +113,7 @@ append content
     ```
 
 - Since React allows you to pass children to a component, I also made this
-available. Just add an `childrend` element whre you want your children to be
+available. Just add an `children` element where you want your children to be
 rendered:
     ```
 //list.jade
