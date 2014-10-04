@@ -141,6 +141,15 @@ actually would be:
     div <b>hello</b>
         p world!
     ```
+- You can define either the normal HTML/Jade way or the react way. The following
+examples are the same:
+
+    ```
+    div(style="backgroundColor:red")
+    ```
+    ```
+    div(style={backgroundColor:"red"})
+    ```
 
 Licence
 -------
