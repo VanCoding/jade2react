@@ -1,6 +1,6 @@
 {
   "name": "jade2react",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A jade to react compiler",
   "main": "lib/server.js",
   "browser":"lib/client.js",
