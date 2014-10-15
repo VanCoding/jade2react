@@ -12,7 +12,7 @@
     "react"
   ],
   "author": "Patrik Stutz",
-  "license": "GPL",
+  "license": "MPLv2",
   "dependencies": {
     "jade": "git://github.com/VanCoding/jade.git",
     "through": "~2.3.6"

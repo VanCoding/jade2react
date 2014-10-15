@@ -151,7 +151,7 @@ examples are the same:
     div(style={backgroundColor:"red"})
     ```
 
-Licence
+License
 -------
 
-GPL, just ask me if that's a problem for you ;)
+MPLv2, visit [LICENSE](./LICENSE) for more information
