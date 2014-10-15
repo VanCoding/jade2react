@@ -154,4 +154,4 @@ examples are the same:
 License
 -------
 
-MPLv2, visit [LICENSE](./LICENSE) for more information
+MPLv2, read [LICENSE.md](./LICENSE.md) for more information
