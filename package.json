@@ -14,8 +14,9 @@
   "author": "Patrik Stutz",
   "license": "MPLv2",
   "dependencies": {
-    "jade-lexer": "git://github.com/jadejs/jade-lexer",
-    "jade-parser": "git://github.com/jadejs/jade-parser",
-    "through": "~2.3.6"
+    "through": "~2.3.6",
+    "jade-parser": "0.0.2",
+    "jade-lexer": "0.0.3",
+    "resolve": "~1.1.0"
   }
 }
