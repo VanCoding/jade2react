@@ -1,61 +1,11 @@
 jade2react
 ==========
 
-A jade to react compiler, that lets you build react components using the jade
-template language. It supports almost all features of jade and adds some more
-functionality to make it even easier to build react components.
+A jade to react compiler, that lets you build complete react components using the
+jade template language. It supports almost all features of jade and adds some
+more functionality to make it even easier to build react components.
 
-example
--------
-```
-doctype html
-html
-  head
-    title Hello World
-  body
-    ul
-      each entry,i in this.props.list
-        li(onClick=this.alert)= entry
-main.
-    exports.alert = function(e){
-        alert("You have clicked a list item!");
-    }
-```
 
-**result**
-```
-var React = require("react");
-var jade2react = require("jade2react");
-
-exports.alert = function(e){
-    alert("You have clicked a list item!");
-}
-
-exports.render = function(){
-	return jade2react.render(this,function(__add){
-		__add(React.DOM.html,{},function(__add){
-			__add(React.DOM.head,{},function(__add){
-				__add(React.DOM.title,{},function(__add){
-					__add("Hello World");
-				});
-			});
-			__add(React.DOM.body,{},function(__add){
-				__add(React.DOM.ul,{},function(__add){
-					for(var i in this.props.list){
-						var entry = this.props.list[i];
-						__add(React.DOM.li,{"onClick":this.alert},function(__add){
-							__add(entry);
-						});
-					}
-				});
-			});
-		});
-
-	})[0];
-}
-module.exports = React.createClass(module.exports);
-module.exports.spec = exports
-```
 installation
 ------------
 jade2react is a registered npm module. So you can install it using the
@@ -64,11 +14,29 @@ following command:
 
 features
 --------
-- Auto compilation: Just require any *.jade file and it gets loaded as
+- Auto compilation: Just require any .jade file and it gets loaded as
 JavaScript. Just make sure you have required jade2react first and the module
 react is available from the jade-file's location.
-- This module provides also a transform function to autocompile *.jade files
+- This module provides also a transform function to autocompile .jade files
 while bundling them with browserify.
+
+changes from 0.1.X to 0.2.X
+---------------------------
+In 0.1.X, jade2react used `jade` to parse jade files and for resolving extends,
+includes & blocks. 0.2.X now uses the `jade-parser` and `jade-lexer` directly to
+parse jade files. Additionally, extends, includes & blocks is now resolved by
+jade2react itself. This opened new possibilities.
+
+The most significant change is, that the contents of extended or included
+files no longer get compiled into the file using them. They stay in their files,
+which makes builds much smaller, since code does not get duplicated.
+
+Another benefit of this is, that components created with jade2react can now be
+extended by normal react-components, not written in jade, in a very easy way.
+
+Also a cool new feature is, that mixins now get compiled to Component methods.
+This makes it possible to call mixins from jade that are not written in jade,
+call jade mixins from normal component methods. This is a super useful feature.
 
 notes
 -----
@@ -80,76 +48,83 @@ define functions on it, the will later be available through `this`.
 In here, you also can require other JavaScript modules or React components and
 even other jade files. See example above.
 
-    ```
-    .main
-        input(type="button" value="Click Me!" onClick=this.click)
-    main.
-        var somemodule = require("somemodule");
+```jade
+.main
+    input(type="button" value="Click Me!" onClick=this.click)
+main.
+    var somemodule = require("somemodule");
 
-        exports.click = function(){
-            somemodule.doSomething();
-        }
-    ```
+    exports.click = function(){
+        somemodule.doSomething();
+    }
+```
 - Extends still works! But not only the render function gets extended but the
 whole component. All properties that are defined in the `exports` object in the
 derived component automatically get mixed into the current exports object. So,
 the following example will still work:
 
-    ```
-    //base.jade
-    div
-        block content
-    main.
-        exports.click = function(){
-            alert("Clicked!")
-        }
+base.jade
 
-    ```
-    ```
-    //component.jade
-    extends base
-    append content
-        div(onClick=this.click)
-    ```
+```jade
+div
+    block content
+main.
+    exports.click = function(){
+        alert("Clicked!")
+    }
+```
+    
+component.jade
+
+```jade
+extends ./base.jade
+append content
+    div(onClick=this.click)
+```
 
 - Since React allows you to pass children to a component, I also made this
 available. Just add an `children` element where you want your children to be
 rendered:
-    ```
-    //list.jade
-    .list
-        h1 Children following
-        children
-    ```
+
+list.jade
+
+```jade
+.list
+    h1 Children following
+    children
+```
 You then can pass the children like you'd expect:
-    ```
-    //main.jade
-    .main
-        List
-            p Child 1
-            p Child 2
-    main.
-    var List = require("list.jade");
-    ```
+
+component.jade
+
+```jade
+.main
+    List
+        p Child 1
+        p Child 2
+main.
+var List = require("list.jade");
+```
 
 - Tag contents are always escaped. So `h1 hello <b>world</b>` will render as
 `h1 hello &lt;b&gt;world&lt;/b&gt;` and not `h1 hello <b>world</b>`. This is
 because in react you set either the full contents of a tag as insecure html,
 or nothing. So while the above example would be no problem, the following
 actually would be:
-    ```
-    div <b>hello</b>
-        p world!
-    ```
-- You can define either the normal HTML/Jade way or the react way. The following
+
+```jade
+div <b>hello</b>
+    p world!
+```
+- You can define styles either the normal HTML/Jade way or the react way. The following
 examples are the same:
 
-    ```
-    div(style="backgroundColor:red")
-    ```
-    ```
-    div(style={backgroundColor:"red"})
-    ```
+```jade
+div(style="backgroundColor:red")
+```
+```jade
+div(style={backgroundColor:"red"})
+```
 
 License
 -------
