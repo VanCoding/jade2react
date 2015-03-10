@@ -42,16 +42,16 @@ notes
 -----
 
 - While the `render` function is auto generated, you also can define
-javascript, to be added to your component in the `main.` element. `exports`
-represents the object that later gets passed to `React.createClass()`, so if you
-define functions on it, the will later be available through `this`.
-In here, you also can require other JavaScript modules or React components and
-even other jade files. See example above.
+javascript, to be added to your component in `script.` elements on the indentation
+level 0. `exports` represents the object that later gets passed to 
+`React.createClass()`, so if you define functions on it, the will later be available
+through `this`. In here, you also can require other JavaScript modules or React
+components and even other jade files. See example above.
 
 ```jade
-.main
+div
     input(type="button" value="Click Me!" onClick=this.click)
-main.
+script.
     var somemodule = require("somemodule");
 
     exports.click = function(){
@@ -68,7 +68,7 @@ base.jade
 ```jade
 div
     block content
-main.
+script.
     exports.click = function(){
         alert("Clicked!")
     }
@@ -102,8 +102,8 @@ component.jade
     List
         p Child 1
         p Child 2
-main.
-var List = require("list.jade");
+script.
+    var List = require("list.jade");
 ```
 
 - Tag contents are always escaped. So `h1 hello <b>world</b>` will render as

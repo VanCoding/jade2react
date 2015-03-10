@@ -1,6 +1,6 @@
 {
   "name": "jade2react",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A jade to react compiler",
   "main": "lib/server.js",
   "browser": "lib/client.js",
@@ -16,7 +16,6 @@
   "dependencies": {
     "through": "~2.3.6",
     "jade-parser": "0.0.2",
-    "jade-lexer": "0.0.3",
-    "resolve": "~1.1.0"
+    "jade-lexer": "0.0.3"
   }
 }
