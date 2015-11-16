@@ -20,23 +20,10 @@ react is available from the jade-file's location.
 - This module provides also a transform function to autocompile .jade files
 while bundling them with browserify.
 
-changes from 0.1.X to 0.2.X
+changes from 0.2.* to 0.3.*
 ---------------------------
-In 0.1.X, jade2react used `jade` to parse jade files and for resolving extends,
-includes & blocks. 0.2.X now uses the `jade-parser` and `jade-lexer` directly to
-parse jade files. Additionally, extends, includes & blocks is now resolved by
-jade2react itself. This opened new possibilities.
-
-The most significant change is, that the contents of extended or included
-files no longer get compiled into the file using them. They stay in their files,
-which makes builds much smaller, since code does not get duplicated.
-
-Another benefit of this is, that components created with jade2react can now be
-extended by normal react-components, not written in jade, in a very easy way.
-
-Also a cool new feature is, that mixins now get compiled to Component methods.
-This makes it possible to call mixins from jade that are not written in jade,
-call jade mixins from normal component methods. This is a super useful feature.
+- jade2react now supports react 0.14.*
+- jade2react now exports your component directly, instead of a factory for it
 
 notes
 -----
