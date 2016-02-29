@@ -1,6 +1,6 @@
 {
   "name": "jade2react",
-  "version": "0.3.0",
+  "version": "1.0.0-beta",
   "description": "A jade to react compiler",
   "main": "lib/server.js",
   "browser": "lib/client.js",
@@ -14,8 +14,13 @@
   "author": "Patrik Stutz",
   "license": "MPLv2",
   "dependencies": {
-    "through": "~2.3.6",
-    "jade-parser": "0.0.2",
-    "jade-lexer": "0.0.3"
+    "pug-lexer": "^1.0.0",
+    "pug-parser": "^1.0.0",
+    "through": "~2.3.6"
+  },
+  "devDependencies": {
+    "colors": "^1.1.2",
+    "diff": "^2.2.1",
+    "react": "^0.14.7"
   }
 }
