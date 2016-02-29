@@ -83,7 +83,7 @@ script(section="body").
 	buttonClicked(){
 		alert("button has been clicked!")
 	}
-script
+script.
 	module.exports.myVar = 5;
 ```
 Here you can see the exact positions:
