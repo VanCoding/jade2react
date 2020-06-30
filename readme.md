@@ -34,7 +34,7 @@ var jade2react = require("jade2react");
 
 class Component extends React.Component{
 	_render(__add){
-		__add(React.createFactory('div'),{},function(__add){
+		__add(jade2react.createFactory('div'),{},function(__add){
 			__add("hello world");
 		});
 	}
@@ -95,7 +95,7 @@ var Button = require("my-button");
 
 class Component extends React.Component{
 	_render(__add){
-		__add(React.createFactory(Button),{onClick:this.buttonClicked.bind(this)});
+		__add(jade2react.createFactory(Button),{onClick:this.buttonClicked.bind(this)});
 	}
 	render(){
 		return jade2react.render(this,this._render)[0];

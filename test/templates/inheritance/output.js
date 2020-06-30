@@ -11,7 +11,7 @@ class Component extends require("../block/input.jade"){
 	}
 	content(__add){
 		super.content.call(this,__add);
-		__add(React.createFactory('h1'),{},function(__add){
+		__add(jade2react.createFactory('h1'),{},function(__add){
 			__add("hello world");
 		});
 	}
