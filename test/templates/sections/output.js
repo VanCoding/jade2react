@@ -3,9 +3,10 @@ var React = require("react");
 var jade2react = require("jade2react");
 //start
 
-class Component extends React.Component{
+var Base = React.Component;
+class Component extends Base{
 	_render(__add){
-		__add(React.createFactory('div'),{});
+		__add(jade2react.createFactory('div'),{});
 	}
 	render(){
 		return jade2react.render(this,this._render)[0];
